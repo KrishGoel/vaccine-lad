@@ -1,10 +1,10 @@
 require('dotenv').config();
 
-const {
-	SENDER_EMAIL,
-	SENDER_EMAIL_PASS,
-	RECEIVER_EMAIL
-} = process.env
+// const {
+// 	SENDER_EMAIL,
+// 	SENDER_EMAIL_PASS,
+// 	RECEIVER_EMAIL
+// } = process.env
 
 var nodemailer = require('nodemailer');
 
@@ -16,14 +16,14 @@ var transporter = nodemailer.createTransport({
 	secure: false,
 	auth: {
 		type: "login",
-		user: SENDER_EMAIL,
-		pass: SENDER_EMAIL_PASS
+		user: process.env.SENDER_EMAIL,
+		pass: process.env.SENDER_EMAIL_PASS
 	}
 });
 
 var mailOptions = {
-	from: SENDER_EMAIL,
-	to: RECEIVER_EMAIL,
+	from: process.env.SENDER_EMAIL,
+	to: process.env.RECEIVER_EMAIL,
 	subject: 'Sending Email using Node.js',
 	text: 'That was easy!'
 };
