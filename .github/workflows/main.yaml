@@ -1,0 +1,28 @@
+name: "Vaccine Notifier"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "*/30 * * * *" # Every 30 minutes, used https://crontab.guru/#*/30_*_*_*_*
+
+jobs:
+  bot:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: "Installing Node"
+        uses: actions/setup-node@v1
+        with:
+          node-version: '15.x'
+
+      - name: "Install all Node Packages n dat"
+        run: "npm install"
+      
+      - name: "Running the actual code"
+        run: "node index.js"
