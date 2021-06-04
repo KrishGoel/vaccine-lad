@@ -1,29 +1,24 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
+const nodemailer = require('nodemailer');
 
-// const {
-// 	SENDER_EMAIL,
-// 	SENDER_EMAIL_PASS,
-// 	RECEIVER_EMAIL
-// } = process.env
-
-var nodemailer = require('nodemailer');
-
+const {
+	SENDER_EMAIL,
+	SENDER_EMAIL_PASS,
+	RECEIVER_EMAIL
+} = process.env
 
 var transporter = nodemailer.createTransport({
-	service: 'yahoo',
-	host: 'smtp.mail.yahoo.com',
-	port: 465,
-	secure: false,
+	service: 'gmail',
 	auth: {
-		type: "login",
-		user: process.env.SENDER_EMAIL,
-		pass: process.env.SENDER_EMAIL_PASS
+		user: SENDER_EMAIL,
+		pass: SENDER_EMAIL_PASS
 	}
 });
 
 var mailOptions = {
-	from: process.env.SENDER_EMAIL,
-	to: process.env.RECEIVER_EMAIL,
+	from: SENDER_EMAIL,
+	to: RECEIVER_EMAIL,
 	subject: 'Sending Email using Node.js',
 	text: 'That was easy!'
 };
