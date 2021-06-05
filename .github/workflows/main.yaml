@@ -27,6 +27,7 @@ jobs:
         with: 
           packages: |
             python-dotenv
+            requests
 
       - name: "Running the actual code"
         run: "python index.py"
