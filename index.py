@@ -10,7 +10,7 @@ import os
 TOKEN = os.environ.get("TOKEN")
 CHAT_ID = os.environ.get("CHAT_ID")
 
-import requests
+# import requests
 
 print("Token:", TOKEN)
 
