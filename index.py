@@ -10,17 +10,15 @@ import os
 TOKEN = os.environ["TOKEN"]
 CHAT_ID = os.environ["CHAT_ID"]
 
-# import requests
-
-print("Token:", TOKEN)
+import requests
 
 # GET Req examples
 # response = requests.get("https://potion-api.vercel.app/table?id=ed5a59a2d5924e6f81044a1ac9247f97")
 # print(response.json())
 
-# def sendMessage(message):
-#     url = 'https://api.telegram.org/bot'+str(TOKEN)+'/sendMessage?chat_id='+str(CHAT_ID)+'&text='+str(message)
-#     x = requests.post(url)
-#     print(x.text)
+def sendMessage(message):
+    url = 'https://api.telegram.org/bot'+str(TOKEN)+'/sendMessage?chat_id='+str(CHAT_ID)+'&text='+str(message)
+    x = requests.post(url)
+    print(x.text)
 
-# sendMessage("Krsh")
+sendMessage("Krsh")
