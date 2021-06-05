@@ -23,7 +23,7 @@ jobs:
           python-version: 3.8
         
       - name: "Install pip packages"
-        uses: "pip install python-dotenv"
+        uses: "python -m pip install python-dotenv"
 
       - name: "Running the actual code"
         run: "python index.py"
