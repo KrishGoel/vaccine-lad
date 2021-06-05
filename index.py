@@ -7,8 +7,8 @@ import os
 # TOKEN = os.getenv("TOKEN")
 # CHAT_ID = os.getenv("CHAT_ID")
 
-TOKEN = os.environ.get("TOKEN")
-CHAT_ID = os.environ.get("CHAT_ID")
+TOKEN = os.environ["TOKEN"]
+CHAT_ID = os.environ["CHAT_ID"]
 
 # import requests
 
