@@ -7,8 +7,9 @@ on:
   pull_request:
     branches:
       - main
-  schedule:
-    - cron: "*/30 * * * *" # Every 30 minutes, used https://crontab.guru/#*/30_*_*_*_*
+  # Uncomment the next 2 lines to toggle cron jobs
+  # schedule:
+    # - cron: "*/30 * * * *" # Every 30 minutes, used https://crontab.guru/#*/30_*_*_*_*
 
 jobs:
   bot:
@@ -26,6 +27,7 @@ jobs:
         uses: "BSFishy/pip-action@v1"
         with: 
           packages: |
+            pytz
             python-dotenv
             requests
 
