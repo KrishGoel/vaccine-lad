@@ -42,9 +42,14 @@ const createTransporter = async() => {
 };
 
 const sendEmail = async(emailOptions) => {
-	let emailTransporter = await createTransporter();
-	await emailTransporter.sendMail(emailOptions);
-	console.log("Email Deployed")
+	try {
+		let emailTransporter = await createTransporter();
+		await emailTransporter.sendMail(emailOptions);
+		console.log("Email Deployed")
+	}
+	catch (e) {
+        console.error(e);
+	}
 };
 
 sendEmail({
