@@ -1,34 +1,55 @@
-// const dotenv = require('dotenv');
-// dotenv.config();
-// const nodemailer = require('nodemailer');
+require("dotenv").config();
+const nodemailer = require("nodemailer");
+const {google} = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 
-// const {
-// 	SENDER_EMAIL,
-// 	SENDER_EMAIL_PASS,
-// 	RECEIVER_EMAIL
-// } = process.env
+const createTransporter = async() => {
+	const oauth2Client = new OAuth2(
+		process.env.CLIENT_ID,
+		process.env.CLIENT_SECRET,
+		"https://developers.google.com/oauthplayground"
+	);
 
-// var transporter = nodemailer.createTransport({
-// 	service: 'gmail',
-// 	auth: {
-// 		user: SENDER_EMAIL,
-// 		pass: SENDER_EMAIL_PASS
-// 	}
-// });
+	oauth2Client.setCredentials({
+		refresh_token: process.env.REFRESH_TOKEN
+	});
 
-// var mailOptions = {
-// 	from: SENDER_EMAIL,
-// 	to: RECEIVER_EMAIL,
-// 	subject: 'Sending Email using Node.js',
-// 	text: 'That was easy!'
-// };
+	const accessToken = await new Promise((resolve, reject) => {
+		oauth2Client.getAccessToken((err, token) => {
+			if (err) {
+				reject("Failed to create access token :(");
+			}
+			else {
+				console.log("Access Token created successfully")
+			}
+			resolve(token);
+		});
+	});
 
-// transporter.sendMail(mailOptions, function (error, info) {
-// 	if (error) {
-// 		console.log(error);
-// 	} else {
-// 		console.log('Email sent: ' + info.response);
-// 	}
-// });
+	const transporter = nodemailer.createTransport({
+		service: "gmail",
+		auth: {
+			type: "OAuth2",
+			user: process.env.SENDER_EMAIL,
+			accessToken,
+			clientId: process.env.CLIENT_ID,
+			clientSecret: process.env.CLIENT_SECRET,
+			refreshToken: process.env.REFRESH_TOKEN
+		}
+	});
 
-console.log("This works")
+	return transporter;
+};
+
+const sendEmail = async(emailOptions) => {
+	let emailTransporter = await createTransporter();
+	await emailTransporter.sendMail(emailOptions);
+	console.log("Email Deployed")
+};
+
+sendEmail({
+	subject: "OAuth Test 1",
+	text: "I am sending an email from nodemailer!",
+	to: process.env.RECEIVER_EMAIL,
+	from: process.env.SENDER_EMAIL
+});
