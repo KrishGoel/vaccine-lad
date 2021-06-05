@@ -14,15 +14,13 @@ jobs:
   bot:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: "Checkout repository content"
+        uses: actions/checkout@v2
 
-      - name: "Installing Node"
-        uses: actions/setup-node@v1
-        with:
-          node-version: '15.x'
+      - name: "Setup Python"
+        uses: actions/setup-python@v2
+          with:
+            python-version: 3.8 #install the python needed
 
-      - name: "Install all Node Packages n dat"
-        run: "npm install"
-      
       - name: "Running the actual code"
-        run: "node index.js"
+        run: "python index.py"
