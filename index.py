@@ -1,10 +1,14 @@
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-project_folder = os.path.expanduser('./')
-load_dotenv(os.path.join(project_folder, '.env'))
-token = os.getenv("TOKEN")
-chatid = os.getenv("CHAT_ID")
+# For localdev
+# project_folder = os.path.expanduser('./')
+# load_dotenv(os.path.join(project_folder, '.env'))
+# token = os.getenv("TOKEN")
+# chatid = os.getenv("CHAT_ID")
+
+token = os.environ.get("TOKEN")
+chatid = os.environ.get("CHAT_ID")
 
 import requests
 
