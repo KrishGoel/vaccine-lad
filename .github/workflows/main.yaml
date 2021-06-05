@@ -30,4 +30,7 @@ jobs:
             requests
 
       - name: "Running the actual code"
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
         run: "python index.py"
