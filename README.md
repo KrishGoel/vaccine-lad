@@ -9,14 +9,14 @@ I achieved the ability to send a notification to my Telegram through this bot. T
 
 I have still attached all the resources you would need to take it up from here. Feel free to hit me up anytime in case you'd wanna discuss anything about this code.
 
-# Functioning
+## Functioning
 The essential idea is to scan through the response JSON obtained from the CoWIN APIs, filter out entries qualifying the criteria (in my case, ```min_age_limit``` = 18 and ```available_capacity``` > 5).
 
 However, the issue that arises with this approach is the fact that the CoWIN APIs return responses for each district and each day, so anyone comfortable with going around the whole town (Delhi for me) would have to run 77 searches (11 districts in Delhi x 7 days of the week) each time the Bot performs the cron job. This is where the code got boring for me and I abandoned it, while it isn't a big issue and could easily be worked around, it didn't seem worthy to me.
 
 Once the code finds even a single entry that qualifies the criteria, it will generate a message including the details of the venue, day, vaccine-name, etc, and shoot it over Telegram. Which is again piss easy but demanding. I have already completed the notification segment of the code, you can see it at ```notify.py```.
 
-# Resources used
+## Resources used
 - [CoWIN API explained by Postman](https://documenter.getpostman.com/view/9564387/TzRPip7u)
 - [CoWIN APIs on API Setu](https://apisetu.gov.in/public/api/cowin#/Appointment%20Availability%20APIs)
 - Postman for testing POST and GET Requests
