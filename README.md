@@ -4,14 +4,14 @@
 
 I mainly did this micro-project to increase my knowledge of server-sided Python, GitHub Actions, and API endpoints.
 
-I achieved the ability to send a notification to my Telegram through this bot. The leftover code is just plain logic and the result however satisfying, wouldn't be worth it in terms of the product hence I am abandoning the code.
+I drove this code to the point where it was able to send notifications to my Telegram. The leftover code was just plain logic and the result, however satisfying, wouldn't have been worth it. Hence, I abandoned the code (also because I had board exams at the time of this writing, they did get cancelled eventually but this code was a study break thing).
 
 I have still attached all the resources you would need to take it up from here. Feel free to hit me up anytime in case you'd wanna discuss anything about this code.
 
 ## Functioning
-The essential idea is to scan through the response JSON obtained from the CoWIN APIs and filter the qualifying entries (in my case, ```min_age_limit``` = 18 and ```available_capacity``` > 5).
+The idea is to scan through the response JSON obtained from the CoWIN APIs and filter the qualifying entries (in my case, ```min_age_limit``` = 18 and ```available_capacity``` > 5).
 
-However, the issue that arises with this approach is the fact that the CoWIN APIs return responses for each district and each day, so anyone comfortable with going around the whole town (Delhi for me) would have to run 77 searches (11 districts in Delhi x 7 days of the week) each time the Bot performs the cron job. This is where the code got boring for me and I left it, it isn't a big issue and can easily be worked out.
+However, the issue that arises with this approach is that the CoWIN API returns a response for each district and each day, so anyone going around the whole town (Delhi for me) would have to run 77 searches (11 districts in Delhi x 7 days of the week) each time the Bot runs. This is where the code got boring for me and I left it, however it isn't a big issue and can easily be worked out.
 
 Once the code finds a qualifying entry, it will generate a message including the details of the venue, day, vaccine name, etc, and shoot it over Telegram. Which is again piss easy but demanding. I have already completed the notification segment of the code, you can see it at [notify.py](/notify.py).
 
